@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>ygege</Name>
+  <Name>Ygégé</Name>
   <Repository>uwucode/ygege</Repository>
   <Registry>https://hub.docker.com/r/uwucode/ygege</Registry>
   <Network>bridge</Network>
@@ -18,7 +18,7 @@
   <Category>MediaApp</Category>
   <WebUI>http://[IP]:[PORT:8715]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/Brainwasher06/unraid-templates/main/templates/ygege.xml</TemplateURL>
-  <Icon>https://ygege.lila.ws/img/ygege-logo.png</Icon>
+  <Icon>https://raw.githubusercontent.com/Brainwasher06/unraid-templates/refs/heads/main/icons/ygege.png</Icon>
   <ExtraParams></ExtraParams>
   <PostArgs></PostArgs>
   <CPUset></CPUset>
