@@ -1,34 +1,31 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>Ygege</Name>
+  <Name>ygege</Name>
   <Repository>uwucode/ygege</Repository>
-  <Registry>https://hub.docker.com/r/uwucode/ygege/</Registry>
-  <Network>dockernet</Network>
-  <MyIP/>
+  <Registry>https://hub.docker.com/r/uwucode/ygege</Registry>
+  <Network>bridge</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://hub.docker.com/r/uwucode/ygege/</Support>
-  <Project/>
-  <Overview>High-performance indexer for YGG Torrent written in Rust&#13;
-&#13;
-Converted By Brainwasher  Always verify this template (and values)  against the support page for the container&#13;
-&#13;
-https://hub.docker.com/r/uwucode/ygege/</Overview>
-  <Category/>
-  <WebUI/>
-  <TemplateURL/>
+  <Support>https://github.com/UwUDev/ygege/issues</Support>
+  <Project>https://github.com/UwUDev/ygege</Project>
+  <Overview>Ygégé est un indexeur haute performance pour YGG Torrent, écrit en Rust. Compatible Prowlarr, Jackett, Sonarr, Radarr.
+
+* Port par défaut : 8715
+* Configuration via variables d'environnement
+* Volume persistant : /app/sessions
+
+**Vérifiez toujours les dernières infos sur** [Docker Hub](https://hub.docker.com/r/uwucode/ygege) ou [GitHub](https://github.com/UwUDev/ygege).</Overview>
+  <Category>MediaApp</Category>
+  <WebUI>http://[IP]:[PORT:8715]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/Brainwasher06/unraid-templates/main/templates/ygege.xml</TemplateURL>
   <Icon>https://ygege.lila.ws/img/ygege-logo.png</Icon>
-  <ExtraParams/>
-  <PostArgs/>
-  <CPUset/>
-  <DateInstalled>1766320316</DateInstalled>
-  <DonateText/>
-  <DonateLink/>
-  <Requires/>
-  <Config Name="Config" Target="/app/sessions" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/ygege</Config>
-  <Config Name="Port" Target="8715" Default="" Mode="tcp" Description="" Type="Port" Display="always" Required="false" Mask="false">8715</Config>
-  <Config Name="Username" Target="YGG_USERNAME" Default="" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Password" Target="YGG_PASSWORD" Default="" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="true"></Config>
-  <Config Name="TMDB" Target="TMDB_TOKEN" Default="" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="true"></Config>
-  <TailscaleStateDir/>
+  <ExtraParams></ExtraParams>
+  <PostArgs></PostArgs>
+  <CPUset></CPUset>
+  
+  <Config Name="Config" Target="/app/sessions" Default="" Mode="rw" Description="Dossier de configuration et sessions persistantes" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/ygege</Config>
+  <Config Name="Port principal" Target="8715" Default="8715" Mode="tcp" Description="Port web Ygégé (modifiable via BIND_PORT)" Type="Port" Display="always" Required="false" Mask="false">8715</Config>
+  <Config Name="YGG Username" Target="YGG_USERNAME" Default="" Mode="" Description="Nom d'utilisateur YGG Torrent (obligatoire)" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="YGG Password" Target="YGG_PASSWORD" Default="" Mode="" Description="Mot de passe YGG Torrent (obligatoire)" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="TMDB Token" Target="TMDB_TOKEN" Default="" Mode="" Description="Token TMDB pour métadonnées (optionnel)" Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
 </Container>
