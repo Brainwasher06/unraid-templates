@@ -9,17 +9,73 @@
   <Support>https://github.com/UwUDev/ygege/issues</Support>
   <Project>https://github.com/UwUDev/ygege</Project>
   <Overview>Ygégé est un indexeur haute performance pour YGG Torrent, écrit en Rust. Compatible Prowlarr, Jackett, Sonarr, Radarr.
+    
+    Caractéristiques principales :
 
-* Port par défaut : 8715
-* Configuration via variables d'environnement
-* Volume persistant : /app/sessions
+    Résolution automatique du domaine actuel de YGG Torrent
+    Bypass Cloudflare automatisé (sans résolution manuelle)<?xml version="1.0"?>
+<Container version="2">
+  <Name>Ygégé</Name>
+  <Repository>uwucode/ygege</Repository>
+  <Registry>https://hub.docker.com/r/uwucode/ygege</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/UwUDev/ygege/issues</Support>
+  <Project>https://github.com/UwUDev/ygege</Project>
+  <Overview>Ygégé est un indexeur haute performance pour YGG Torrent, écrit en Rust. Compatible avec Prowlarr, Jackett, Sonarr et Radarr.
+
+Caractéristiques principales :
+
+- Résolution automatique du domaine actuel de YGG Torrent
+- Contournement automatique de Cloudflare (sans intervention manuelle)
+- Contournement de la limite des 5 téléchargements par jour
+- Recherche quasi instantanée
+- Reconnexion transparente aux sessions expirées
+- Mise en cache des sessions
+- Contournement des DNS menteurs
+- Faible consommation mémoire
+
+ATTENTION : sur Unraid, la résolution DNS via DoH ne fonctionne pas chez moi. Le problème semble lié à la configuration réseau IPv6 d’Unraid. Pour l’instant, je contourne le problème en ajoutant "--add-host yggtorrent.org:104.26.4.166" dans les paramètres supplémentaires.
+Le problème est qu’il faut modifier le nom de domaine et l’adresse IP manuellement lorsque cela change du côté de Yggtorrent.
+J’ai proposé au développeur du projet d’ajouter une variable "USE_SYSTEM_DNS=True" permettant de déléguer la résolution DNS au système. Cela fonctionne bien à condition que vos DNS ne soient pas menteurs.
+La variable correspondante existe déjà dans ce template, mais elle ne fonctionne pas encore car je n’ai pas eu de retour du développeur du projet.
+
+**Vérifiez toujours les dernières informations sur** [Docker Hub](https://hub.docker.com/r/uwucode/ygege) ou [GitHub](https://github.com/UwUDev/ygege).</Overview>
+  <Category>MediaApp</Category>
+  <WebUI>http://[IP]:[PORT:8715]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/Brainwasher06/unraid-templates/main/templates/ygege.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/Brainwasher06/unraid-templates/refs/heads/main/icons/ygege.png</Icon>
+  <ExtraParams>--add-host yggtorrent.org:104.26.4.166</ExtraParams>
+  <PostArgs></PostArgs>
+  <CPUset></CPUset>
+  
+  <Config Name="Config" Target="/app/sessions" Default="" Mode="rw" Description="Dossier de configuration et de sessions persistantes" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/ygege</Config>
+  <Config Name="Port principal" Target="8715" Default="8715" Mode="tcp" Description="Port web de Ygégé (modifiable via BIND_PORT)" Type="Port" Display="always" Required="false" Mask="false">8715</Config>
+  <Config Name="YGG Username" Target="YGG_USERNAME" Default="" Mode="" Description="Nom d’utilisateur YGG Torrent (obligatoire)" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="YGG Password" Target="YGG_PASSWORD" Default="" Mode="" Description="Mot de passe YGG Torrent (obligatoire)" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="TMDB Token" Target="TMDB_TOKEN" Default="" Mode="" Description="Jeton TMDB pour les métadonnées (optionnel)" Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+  <Config Name="DNS système" Target="USE_SYSTEM_DNS" Default="False" Mode="" Description="Utilise les DNS du système plutôt que le DoH intégré au conteneur, qui peut ne pas fonctionner correctement sur Unraid" Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+</Container>
+
+    Bypass de la limite des 5 téléchargements par jour
+    Recherche quasi instantanée
+    Reconnexion transparente aux sessions expirées
+    Caching des sessions
+    Contournement des DNS menteurs
+    Consommation mémoire faible
+
+ATTENTION : Chez moi la résolution DNS en DOH ne fonctionne pas. Le problème semble venir de la configuration réseau IPv6 de Unraid. Pour l'instant je contourne le problème en ajoutant  "--add-host yggtorrent.org:104.26.4.166" dans les paramètres supplémentaires.
+    Le problème c'est qu'il faut modifier le nom de domaine et l'IP a la main quand ca change du côté de Yggtorrent. 
+    J'ai proposé au développeur du projet d'ajouter une variable "USE_SYSTEM_DNS=True" permettant de déléguer la résolution DNS au system. Cela fonctionne bien a condition que vos DNS ne mentent pas.
+    J'ai déjà créer la variable correspondante dans ce template. Pour l'instant elle ne fonctionne pas car je n'ai pas eu de retour du dev du projet.
 
 **Vérifiez toujours les dernières infos sur** [Docker Hub](https://hub.docker.com/r/uwucode/ygege) ou [GitHub](https://github.com/UwUDev/ygege).</Overview>
   <Category>MediaApp</Category>
   <WebUI>http://[IP]:[PORT:8715]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/Brainwasher06/unraid-templates/main/templates/ygege.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/Brainwasher06/unraid-templates/refs/heads/main/icons/ygege.png</Icon>
-  <ExtraParams></ExtraParams>
+  <ExtraParams>--add-host yggtorrent.org:104.26.4.166</ExtraParams>
   <PostArgs></PostArgs>
   <CPUset></CPUset>
   
@@ -28,4 +84,5 @@
   <Config Name="YGG Username" Target="YGG_USERNAME" Default="" Mode="" Description="Nom d'utilisateur YGG Torrent (obligatoire)" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="YGG Password" Target="YGG_PASSWORD" Default="" Mode="" Description="Mot de passe YGG Torrent (obligatoire)" Type="Variable" Display="always" Required="true" Mask="true"></Config>
   <Config Name="TMDB Token" Target="TMDB_TOKEN" Default="" Mode="" Description="Token TMDB pour métadonnées (optionnel)" Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+  <Config Name="DNS System" Target="USE_SYSTEM_DNS" Default="False" Mode="" Description="Utilise les DNS du system plustot que le DOH du container qui peut ne pas fonctionner sur Unraid" Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
 </Container>
