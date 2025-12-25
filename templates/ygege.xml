@@ -31,7 +31,7 @@ La variable correspondante existe déjà dans ce template, mais elle ne fonction
   <WebUI>http://[IP]:[PORT:8715]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/Brainwasher06/unraid-templates/main/templates/ygege.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/Brainwasher06/unraid-templates/refs/heads/main/icons/ygege.png</Icon>
-  <ExtraParams>--add-host yggtorrent.org:104.26.4.166</ExtraParams>
+  <ExtraParams>--add-host yggtorrent.org:104.26.4.166 --add-host=api64.ipify.org:104.26.12.205 --add-host=pastebin.com:104.20.29.150</ExtraParams>
   <PostArgs></PostArgs>
   <CPUset></CPUset>
   
